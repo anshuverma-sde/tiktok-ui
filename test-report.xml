@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="7" failures="0" errors="0" time="1.868">
+  <testsuite name="Button Component" errors="0" failures="0" skipped="0" timestamp="2025-05-06T07:46:09" time="1.048" tests="7">
+    <testcase classname="Button Component renders the button with default props" name="Button Component renders the button with default props" time="0.151">
+    </testcase>
+    <testcase classname="Button Component applies the correct variant styles" name="Button Component applies the correct variant styles" time="0.037">
+    </testcase>
+    <testcase classname="Button Component applies the correct size styles" name="Button Component applies the correct size styles" time="0.026">
+    </testcase>
+    <testcase classname="Button Component disables the button when `disabled` prop is true" name="Button Component disables the button when `disabled` prop is true" time="0.009">
+    </testcase>
+    <testcase classname="Button Component renders loading spinner when `isLoading` is true" name="Button Component renders loading spinner when `isLoading` is true" time="0.034">
+    </testcase>
+    <testcase classname="Button Component triggers onClick event when clicked" name="Button Component triggers onClick event when clicked" time="0.016">
+    </testcase>
+    <testcase classname="Button Component applies custom class names" name="Button Component applies custom class names" time="0.008">
+    </testcase>
+  </testsuite>
+</testsuites>

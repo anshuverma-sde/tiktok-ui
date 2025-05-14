@@ -1,0 +1,35 @@
+image:
+  name: eclipse-temurin:17-jdk
+  entrypoint: ['']
+
+variables:
+  SONAR_TOKEN: '${SONAR_TOKEN}'
+  SONAR_HOST_URL: '${SONAR_HOST_URL}'
+  GIT_DEPTH: 0
+
+before_script:
+  - curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
+  - unzip sonar-scanner.zip
+  - curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+  - apt-get update && apt-get install -y nodejs
+  - node --version && npm --version
+  - npm ci
+
+sonarqube-check:
+  stage: test
+  script:
+    - npm run test:coverage
+    - export PATH="$PWD/sonar-scanner-5.0.1.3006-linux/bin:$PATH"
+    - java -version
+    - |
+      sonar-scanner -X \
+        -Dsonar.host.url=$SONAR_HOST_URL \
+        -Dsonar.token=$SONAR_TOKEN \
+        -Dsonar.projectKey=tiktok-ui \
+        -Dsonar.qualitygate.wait=true
+  allow_failure: false
+  tags: [linux]
+  only:
+    - merge_requests
+    - main
+    - push

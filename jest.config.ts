@@ -1,0 +1,45 @@
+module.exports = {
+  preset: 'ts-jest',
+  testEnvironment: 'jsdom',
+  transform: {
+    '^.+\\.(ts|tsx)$': ['ts-jest', { tsconfig: { jsx: 'react-jsx' } }],
+  },
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
+    '\\.(jpg|jpeg|png|gif|svg|webp|avif)$': '<rootDir>/__mocks__/fileMock.js',
+    '^next$': require.resolve('next'),
+    '^lucide-react$': '<rootDir>/__mocks__/lucide-react.js',
+    '^next/font/(.*)$': '<rootDir>/__mocks__/nextFontMock.js',
+  },
+  moduleDirectories: ['node_modules', 'src'],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  testMatch: [
+    '<rootDir>/src/**/*.test.{js,jsx,ts,tsx}',
+    '<rootDir>/tests/**/*.test.{js,jsx,ts,tsx}',
+  ],
+  collectCoverage: true,
+  collectCoverageFrom: [
+    'src/**/*.{ts,tsx}',
+    '!src/**/*.d.ts',
+    '!src/**/*.test.{ts,tsx}',
+    '!src/**/*.spec.{ts,tsx}',
+    '!**/node_modules/**',
+    '!**/constants.ts',
+    '!**/types.ts',
+    '!**/__mocks__/**',
+    '!**/__tests__/**',
+  ],
+  coverageThreshold: {
+    global: {
+      branches: 30,
+      functions: 30,
+      lines: 30,
+      statements: 30,
+    },
+  },
+  // coverageReporters: ['json', 'lcov', 'text', 'clover'],
+  coverageDirectory: 'coverage',
+  coverageReporters: ['lcov', 'text-summary', 'json-summary'],
+};
